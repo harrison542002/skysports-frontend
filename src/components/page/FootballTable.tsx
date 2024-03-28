@@ -1,6 +1,5 @@
 import LeagueCard from "@/components/utilities/LeagueCard";
 import { LeagueResponse } from "@/types/response.types";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React from "react";
 
 type Props = { result: { data: LeagueResponse[]; count: number } };
