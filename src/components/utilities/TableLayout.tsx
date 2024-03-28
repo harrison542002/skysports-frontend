@@ -38,7 +38,9 @@ const TableLayout = (props: Props) => {
               <tr key={res[props.id_property]}>
                 {props.dataFormat.map((elem) => {
                   if (elem.key === "#") {
-                    return <TableRowStyle data={index + 1} />;
+                    return (
+                      <TableRowStyle data={index + 1} key={res[elem.key]} />
+                    );
                   } else {
                     return (
                       <TableRowStyle data={res[elem.key]} key={res[elem.key]} />
