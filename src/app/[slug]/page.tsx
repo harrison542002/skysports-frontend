@@ -98,6 +98,7 @@ const LeagueDetail = async ({
             dataFormat: standing_table_format,
             id_property: "standing_id",
             data: standing.data,
+            rowLink: true,
           }}
         />
         <Pagination totalPage={Math.ceil(standing.count / limit)} />

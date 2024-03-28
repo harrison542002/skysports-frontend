@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 type Props = {
@@ -5,6 +6,7 @@ type Props = {
   dataFormat: { heading: string; key: string }[];
   id_property: string;
   data: any;
+  rowLink?: boolean;
 };
 const TableRowStyle = ({ data }: { data: string | number }) => {
   return (
@@ -35,7 +37,20 @@ const TableLayout = (props: Props) => {
           </thead>
           <tbody>
             {props.data.map((res: any, index: number) => (
-              <tr key={res[props.id_property]}>
+              <tr
+                key={res[props.id_property]}
+                className={`${
+                  props.rowLink && "hover:bg-slate-200 cursor-pointer"
+                }`}
+                onClick={(e) => {
+                  if (props.rowLink) {
+                    window.open(
+                      `https://www.skysports.com${res["detail_url"]}`,
+                      "_blank"
+                    );
+                  }
+                }}
+              >
                 {props.dataFormat.map((elem) => {
                   if (elem.key === "#") {
                     return (
