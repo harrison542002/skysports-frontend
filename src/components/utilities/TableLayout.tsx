@@ -27,45 +27,50 @@ const TableLayout = (props: Props) => {
         {props.table_title}
       </h4>
       {Number(props.data.length) > 0 ? (
-        <table className="border-collapse border-b border-slate-500 w-full shadow-md">
-          <thead className="p-5">
-            <tr className="p-5 bg-slate-100">
-              {props.dataFormat.map((elem) => (
-                <TableHeaderStyle data={elem.heading} key={elem.heading} />
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {props.data.map((res: any, index: number) => (
-              <tr
-                key={res[props.id_property]}
-                className={`${
-                  props.rowLink && "hover:bg-slate-200 cursor-pointer"
-                }`}
-                onClick={(e) => {
-                  if (props.rowLink) {
-                    window.open(
-                      `https://www.skysports.com${res["detail_url"]}`,
-                      "_blank"
-                    );
-                  }
-                }}
-              >
-                {props.dataFormat.map((elem) => {
-                  if (elem.key === "#") {
-                    return (
-                      <TableRowStyle data={index + 1} key={res[elem.key]} />
-                    );
-                  } else {
-                    return (
-                      <TableRowStyle data={res[elem.key]} key={res[elem.key]} />
-                    );
-                  }
-                })}
+        <div className="overflow-x-auto">
+          <table className="border-collapse border-b border-slate-500 w-full shadow-md">
+            <thead className="p-5">
+              <tr className="p-5 bg-slate-100">
+                {props.dataFormat.map((elem) => (
+                  <TableHeaderStyle data={elem.heading} key={elem.heading} />
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {props.data.map((res: any, index: number) => (
+                <tr
+                  key={res[props.id_property]}
+                  className={`${
+                    props.rowLink && "hover:bg-slate-200 cursor-pointer"
+                  }`}
+                  onClick={(e) => {
+                    if (props.rowLink) {
+                      window.open(
+                        `https://www.skysports.com${res["detail_url"]}`,
+                        "_blank"
+                      );
+                    }
+                  }}
+                >
+                  {props.dataFormat.map((elem) => {
+                    if (elem.key === "#") {
+                      return (
+                        <TableRowStyle data={index + 1} key={res[elem.key]} />
+                      );
+                    } else {
+                      return (
+                        <TableRowStyle
+                          data={res[elem.key]}
+                          key={res[elem.key]}
+                        />
+                      );
+                    }
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <h1>No Data Existed for this category.</h1>
       )}
