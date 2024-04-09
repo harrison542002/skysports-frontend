@@ -1,5 +1,7 @@
 export const getLeagues = async () => {
-  const res = await fetch(`${process.env.SPORTS_API}/league`);
+  const res = await fetch(`${process.env.SPORTS_API}/league`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
